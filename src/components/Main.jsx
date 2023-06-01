@@ -1,12 +1,15 @@
-import React from "react";
+import React, { useContext } from "react";
 import Card from "./Card";
 import { CurrentUserContext } from "../contexts/CurrentUserContext";
+import Header from './Header';
 
-function Main({ onEditProfile, onAddPlace, onEditAvatar, onCardClick, onCardLike, onCardDelete, cards }) {
+function Main({ onEditProfile, onAddPlace, onEditAvatar, onCardClick, onCardLike, onCardDelete, cards, isLoggedIn, email, onSignOut, }) {
 
-  const currentUser = React.useContext(CurrentUserContext);
+  const currentUser = useContext(CurrentUserContext);
 
   return (
+    <>
+    <Header isLoggedIn={isLoggedIn} email={email} onSignOut={onSignOut} />
     <main className="content">
       <section className="profile" aria-label="секция редактирования профиля">
         <div className="profile__align">
@@ -39,6 +42,7 @@ function Main({ onEditProfile, onAddPlace, onEditAvatar, onCardClick, onCardLike
         ))}
       </section>
     </main>
+    </>
   )
 }
 
