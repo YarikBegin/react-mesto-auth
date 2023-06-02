@@ -137,7 +137,10 @@ function App() {
   function heandleLogin(email, password) {
     apiAuth
     .signin({ email, password })
-    .then((res) => localStorage.setItem('JWT', res.token))
+    .then((res) => {
+      localStorage.setItem('JWT', res.token);
+      setEmail(email);
+    })
     .then(() => setIsLoggedIn(true))
     .catch(console.log);
   }
